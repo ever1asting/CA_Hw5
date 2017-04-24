@@ -147,8 +147,8 @@ $$ \frac{7 * 10}{ (4*9+7)} \approx 1.63 $$
 \caption{}
 \end{figure}
 
-每次循环中，BNEZ句在EX结束后即跳转，在下一时钟周期开始重复上述过程，因此单次循环需要16个时钟周期，仅在最后一次循环中分支指令不再跳转，WB阶段结束后这段指令执行完毕。而分析这段汇编指令并结合R3 初值为R2+396，不难发现该循环需要执行$ \frac{396}{4} = 99 $次，因此总共需要的时钟周期数为：
-$$ 99 * 16 + 2 = 1586 $$
+每次循环中，BNEZ句在EX结束后即跳转，在下一时钟周期开始重复上述过程，因此单次循环需要16个时钟周期，仅在最后一次循环中分支指令不再跳转，根据课件所述分支指令不进入WB阶段，只需要四个时钟周期。而分析这段汇编指令并结合R3 初值为R2+396，不难发现该循环需要执行$ \frac{396}{4} = 99 $ 次，因此总共需要的时钟周期数为：
+$$ 99 * 16 + 1 = 1585 $$
 
 \subsection{}
 
@@ -158,7 +158,7 @@ $$ 99 * 16 + 2 = 1586 $$
 \end{figure}
 
 分析基本同第一小问，总共需要的时钟周期数为：
-$$ 99 * 9 + 2 = 893 $$
+$$ 99 * 9 + 1 = 892 $$
 
 \subsection{}
 
@@ -177,7 +177,7 @@ $$ 99 * 6 + 4 = 598 $$
 
 \begin{equation}
 \begin{aligned}
-Bypass_{MEM- \textgreater ID(B)} = & (rt_D = ws_M)*we_M*re2_D 
+Bypass_{MEM- \textgreater ID(B)} = & (rt_D = ws_M)*we_M*re2_D
 \end{aligned}
 \end{equation}
 
@@ -185,7 +185,7 @@ Bypass_{MEM- \textgreater ID(B)} = & (rt_D = ws_M)*we_M*re2_D
 
 \begin{equation}
 \begin{aligned}
-stall = & (rs_D = ws_E)*(opcode_E = LW_E)*(ws_E \neq 0)*re1_D \\ 
+stall = & (rs_D = ws_E)*(opcode_E = LW_E)*(ws_E \neq 0)*re1_D \\
 & + (rt_D = ws_E)*(opcode_E = LW_E)*(ws_E \neq 0)*re2_D
 \end{aligned}
 \end{equation}
